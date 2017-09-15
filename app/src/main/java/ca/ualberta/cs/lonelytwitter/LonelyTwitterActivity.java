@@ -1,5 +1,7 @@
 package ca.ualberta.cs.lonelytwitter;
 
+/*can implement many but extend only one*/
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,6 +14,7 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,7 +32,7 @@ public class LonelyTwitterActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
+        Log.d("", "HELLO HYMAN");
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
@@ -40,7 +43,21 @@ public class LonelyTwitterActivity extends Activity {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
 				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
+
+				Tweet tweet = new ImportantTweet("");
+				Tweet tweet1 = new NormalTweet("hi");
+				try {
+					tweet.setMessage("Hello fam");
+				} catch (TweetTooLongException e) {
+					//e.printStackTrace();
+				}
+				Log.d("", String.format("The isImportant method on tweet returns %b", tweet.isImportant()));
+				Log.d("", String.format("The isImportant method on tweet1 returns %b", tweet1.isImportant()));
+				//finish();
+                Tweetable tweet3 = new ImportantTweet("");
+                ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+                tweetList.add(tweet);
+                tweetList.add(tweet1);
 
 			}
 		});
