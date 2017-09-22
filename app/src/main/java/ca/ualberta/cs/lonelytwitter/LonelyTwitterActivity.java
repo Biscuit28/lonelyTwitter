@@ -2,6 +2,7 @@ package ca.ualberta.cs.lonelytwitter;
 
 /*can implement many but extend only one*/
 
+<<<<<<< HEAD
 import com.google.gson.Gson;
 
 import java.io.FileInputStream;
@@ -33,6 +34,26 @@ import java.io.FileInputStream;
 
 		import com.google.gson.Gson;
 		import com.google.gson.reflect.TypeToken;
+=======
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Date;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+>>>>>>> 2604d97e5a8f1e602daa5c0fd71379306bd04d93
 
 public class LonelyTwitterActivity extends Activity {
 
@@ -48,7 +69,7 @@ public class LonelyTwitterActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
+        Log.d("", "HELLO HYMAN");
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
@@ -58,11 +79,30 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
+<<<<<<< HEAD
 
 				tweets.add(new NormalTweet(text));
 				adapter.notifyDataSetChanged();
 				saveInFile();
 
+=======
+				saveInFile(text, new Date(System.currentTimeMillis()));
+
+				Tweet tweet = new ImportantTweet("");
+				Tweet tweet1 = new NormalTweet("hi");
+				try {
+					tweet.setMessage("Hello fam");
+				} catch (TweetTooLongException e) {
+					//e.printStackTrace();
+				}
+				Log.d("", String.format("The isImportant method on tweet returns %b", tweet.isImportant()));
+				Log.d("", String.format("The isImportant method on tweet1 returns %b", tweet1.isImportant()));
+				//finish();
+                Tweetable tweet3 = new ImportantTweet("");
+                ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+                tweetList.add(tweet);
+                tweetList.add(tweet1);
+>>>>>>> 2604d97e5a8f1e602daa5c0fd71379306bd04d93
 
 			}
 		});
